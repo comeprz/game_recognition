@@ -1,0 +1,53 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\virlo\\OneDrive\\Bureau\\Esgi\\game_recognition\\MachineLearning\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{AC45069D-36CA-4E92-91F0-62505786183E}|MachineLearning.vcxproj|C:\\Users\\virlo\\OneDrive\\Bureau\\Esgi\\game_recognition\\MachineLearning\\AlgoLin.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{AC45069D-36CA-4E92-91F0-62505786183E}|MachineLearning.vcxproj|solutionrelative:AlgoLin.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC45069D-36CA-4E92-91F0-62505786183E}|MachineLearning.vcxproj|C:\\Users\\virlo\\OneDrive\\Bureau\\Esgi\\game_recognition\\MachineLearning\\MachineLearning.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{AC45069D-36CA-4E92-91F0-62505786183E}|MachineLearning.vcxproj|solutionrelative:MachineLearning.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "AlgoLin.cpp",
+              "DocumentMoniker": "C:\\Users\\virlo\\OneDrive\\Bureau\\Esgi\\game_recognition\\MachineLearning\\AlgoLin.cpp",
+              "RelativeDocumentMoniker": "AlgoLin.cpp",
+              "ToolTip": "C:\\Users\\virlo\\OneDrive\\Bureau\\Esgi\\game_recognition\\MachineLearning\\AlgoLin.cpp",
+              "RelativeToolTip": "AlgoLin.cpp",
+              "ViewState": "AgIAALkAAAAAAAAAAAAAALoAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-02-02T13:19:03.218Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "MachineLearning.cpp",
+              "DocumentMoniker": "C:\\Users\\virlo\\OneDrive\\Bureau\\Esgi\\game_recognition\\MachineLearning\\MachineLearning.cpp",
+              "RelativeDocumentMoniker": "MachineLearning.cpp",
+              "ToolTip": "C:\\Users\\virlo\\OneDrive\\Bureau\\Esgi\\game_recognition\\MachineLearning\\MachineLearning.cpp",
+              "RelativeToolTip": "MachineLearning.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAACAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-02-02T13:14:55.747Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
