@@ -131,6 +131,7 @@ public:
                 std::cout << deltas[l][j] << " ";
             }
         }
+        std::cout << std::endl;
     }
 
 private:
@@ -156,8 +157,14 @@ int main() {
     std::vector<std::vector<double>> inputs = {{0.0, 0.0}, {0.0, 1.0}, {1.0, 0.0}, {1.0, 1.0}};
     std::vector<std::vector<double>> expected_outputs = {{-1.0}, {1.0}, {1.0}, {-1.0}};
     std::vector<double> losses = mlp.train(inputs, expected_outputs, 0.05, 10000, true);
-    std::vector<double> prediction = mlp.predict({0.0, 1.0}, true);
-
+    for (const auto & input : inputs) {
+        std::vector<double> prediction = mlp.predict(input, true);
+        std::cout << "Prediction: ";
+        for (double p : prediction) {
+            std::cout << p << " ";
+        }
+        std::cout << std::endl;
+    }
     std::ofstream loss_file("losses.txt");
     if (loss_file.is_open()) {
         for (double loss : losses) {
