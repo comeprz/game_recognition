@@ -1,6 +1,8 @@
 #include <vector>
 #include <GL/glut.h>
 #include <iostream>
+#include <cstdlib>
+#include <ctime>
 
 struct Point
 {
@@ -13,6 +15,23 @@ std::vector<Point> points = {
 	{1.0f,0.0f, 1.0f, 0.0f,0.0f}, //point rouge
 	{0.0f, 1.0f, 1.0f,0.0f, 0.0f} //point rouge
 };
+
+std::vector<float> W;
+
+void initializeWeights() {
+	srand(time(0));
+	W.resize(3);
+	for (auto& w : W) {
+		w = ((float)rand() / RAND_MAX) * 2.0f - 1.0f; // Valeurs entre -1 et 1
+	}
+	W = { 0.5f, 1.0f, -1.0f };
+	std::cout << "Initial Weights: " << W[0] << " " << W[1] << " " << W[2] << std::endl;
+}
+
+float predict(const std::vector<float>& W, float x1, float x2) {
+	float signal = W[1] * x1 + W[2] * x2 + W[0];
+	return signal >= 0 ? 1.0f : -1.0f;
+}
 
 void drawAxes()
 {
@@ -36,13 +55,45 @@ void drawAxes()
 	glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, '1');
 }
 
+void displaySeparation() {
+	int nx = 100, ny = 100;
+	float step = 1.0f / nx;
+
+	std::cout << "Weights: " << W[0] << " " << W[1] << " " << W[2] << std::endl;
+
+	for (int i = 0; i < nx; ++i) {
+		for (int j = 0; j < ny; ++j) {
+			float x1 = i * step;
+			float x2 = j * step;
+			float pred = predict(W, x1, x2);
+			std::cout << "Point: (" << x1 << ", " << x2 << ") -> Prediction: " << pred << std::endl;
+		}
+	}
+
+	glBegin(GL_POINTS);
+	for (int i = 0; i < nx; ++i) {
+		for (int j = 0; j < ny; ++j) {
+			float x1 = i * step;
+			float x2 = j * step;
+			float pred = predict(W, x1, x2);
+
+			if (pred >= 0) glColor3f(0.68f, 0.85f, 0.90f); // Light blue
+			else glColor3f(1.0f, 0.75f, 0.80f); // Pink
+
+			glVertex2f(x1, x2);
+		}
+	}
+	glEnd();
+}
+
 void display()
 {
 	glClear(GL_COLOR_BUFFER_BIT);
 	glPointSize(10.0f);
 
-	drawAxes();
+	displaySeparation();
 
+	glPointSize(10.0f);
 	glBegin(GL_POINTS);
 	for (const auto& p : points)
 	{
@@ -51,6 +102,7 @@ void display()
 	}
 	glEnd();
 	glFlush();
+
 }
 
 
@@ -60,6 +112,7 @@ void init()
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
 	gluOrtho2D(-0.2, 1.2, -0.2, 1.2);
+	initializeWeights();
 }
 
 
