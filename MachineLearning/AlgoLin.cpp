@@ -17,6 +17,8 @@ std::vector<Point> points = {
 };
 
 std::vector<float> W;
+float alpha = 0.1f;
+int iteration_count = 100;
 
 void initializeWeights() {
 	srand(time(0));
@@ -24,7 +26,7 @@ void initializeWeights() {
 	for (auto& w : W) {
 		w = ((float)rand() / RAND_MAX) * 2.0f - 1.0f; // Valeurs entre -1 et 1
 	}
-	W = { 0.5f, 1.0f, -1.0f };
+	//W = { 0.5f, 1.0f, -1.0f };
 	std::cout << "Initial Weights: " << W[0] << " " << W[1] << " " << W[2] << std::endl;
 }
 
@@ -45,30 +47,30 @@ void drawAxes()
 	glVertex2f(-0.1f, 1.2f);
 	glEnd();
 
-	glRasterPos2f(-0.15f, -0.05f);
-	glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, '0');
+	//glRasterPos2f(-0.15f, -0.05f);
+	//glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, '0');
 
-	glRasterPos2f(1.0f, -0.15f);
-	glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, '1');
+	//glRasterPos2f(1.0f, -0.15f);
+	//glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, '1');
 
-	glRasterPos2f(-0.15f, 1.0f);
-	glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, '1');
+	//glRasterPos2f(-0.15f, 1.0f);
+	//glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, '1');
 }
 
 void displaySeparation() {
 	int nx = 100, ny = 100;
 	float step = 1.0f / nx;
 
-	std::cout << "Weights: " << W[0] << " " << W[1] << " " << W[2] << std::endl;
+	//std::cout << "Weights: " << W[0] << " " << W[1] << " " << W[2] << std::endl;
 
-	for (int i = 0; i < nx; ++i) {
-		for (int j = 0; j < ny; ++j) {
-			float x1 = i * step;
-			float x2 = j * step;
-			float pred = predict(W, x1, x2);
-			std::cout << "Point: (" << x1 << ", " << x2 << ") -> Prediction: " << pred << std::endl;
-		}
-	}
+	//for (int i = 0; i < nx; ++i) {
+	//	for (int j = 0; j < ny; ++j) {
+	//		float x1 = i * step;
+	//		float x2 = j * step;
+	//		float pred = predict(W, x1, x2);
+	//		std::cout << "Point: (" << x1 << ", " << x2 << ") -> Prediction: " << pred << std::endl;
+	//	}
+	//}
 
 	glBegin(GL_POINTS);
 	for (int i = 0; i < nx; ++i) {
@@ -84,6 +86,21 @@ void displaySeparation() {
 		}
 	}
 	glEnd();
+}
+
+void train(int iteration_count, float alpha) {
+	for (int i = 0; i < iteration_count; ++i) {
+		int k = rand() % points.size();
+		Point Xk = points[k];
+		float Yk = (Xk.r == 0.0f) ? 1.0f : -1.0f; // Bleu = 1, Rouge = -1
+		float gXk = predict(W, Xk.x, Xk.y);
+
+		W[0] += alpha * (Yk - gXk) * 1.0f;
+		W[1] += alpha * (Yk - gXk) * Xk.x;
+		W[2] += alpha * (Yk - gXk) * Xk.y;
+
+		displaySeparation();
+	}
 }
 
 void display()
@@ -113,6 +130,7 @@ void init()
 	glLoadIdentity();
 	gluOrtho2D(-0.2, 1.2, -0.2, 1.2);
 	initializeWeights();
+	train(iteration_count, alpha);
 }
 
 
