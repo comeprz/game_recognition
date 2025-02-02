@@ -1,11 +1,29 @@
-// MachineLearning.cpp : Ce fichier contient la fonction 'main'. L'exécution du programme commence et se termine à cet endroit.
-//
+#include "AlgoLin.h"
+#include "Mlp.h"
 #include <iostream>
+#include <GL/glut.h>
 
-//int main()
-//{
-//    std::cout << "Hello World!\n";
-//}
+int main(int argc, char** argv) {
+    int choice;
+
+    std::cout << "1 - Algo Lineaire\n";
+    std::cout << "2 - MLP\n";
+    std::cout << "Votre choix : ";
+    std::cin >> choice;
+
+    if (choice == 1) {
+        launchAlgoLin(argc, argv);
+    }
+    else if (choice == 2) {
+        launchMLP(argc, argv);
+    }
+    else {
+        std::cout << "Erreur : Choix invalide. Veuillez relancer le programme.\n";
+        return 1;
+    }
+
+    return 0;
+}
 
 // Exécuter le programme : Ctrl+F5 ou menu Déboguer > Exécuter sans débogage
 // Déboguer le programme : F5 ou menu Déboguer > Démarrer le débogage

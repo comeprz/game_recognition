@@ -1,21 +1,15 @@
-#include <vector>
+#include "AlgoLin.h"
 #include <GL/glut.h>
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
 
-struct Point
-{
-	float x, y;
-	float r, g, b;
-	float label;
-};
-
-std::vector<Point> points;
 
 std::vector<float> W;
 float alpha = 0.1f;
 int iteration_count = 200;
+
+std::vector<Point> points;
 
 void initializeWeights() {
 	srand(time(0));
@@ -77,8 +71,8 @@ void displaySeparation() {
 			float x2 = j * step;
 			float pred = predict(W, x1, x2);
 
-			if (pred >= 0) glColor3f(0.68f, 0.85f, 0.90f); // Light blue
-			else glColor3f(1.0f, 0.75f, 0.80f); // Pink
+			if (pred >= 0) glColor3f(0.68f, 0.85f, 0.90f);
+			else glColor3f(1.0f, 0.75f, 0.80f);
 
 			glVertex2f(x1, x2);
 		}
@@ -122,9 +116,9 @@ void display()
 
 void setDataset1() {
 	points = {
-		{1.0f, 1.0f, 0.0f, 0.0f, 1.0f, 1.0f}, // Bleu (1)
-		{1.0f, 0.0f, 1.0f, 0.0f, 0.0f, -1.0f}, // Rouge (-1)
-		{0.0f, 1.0f, 1.0f, 0.0f, 0.0f, -1.0f}  // Rouge (-1)
+		{1.0f, 1.0f, 0.0f, 0.0f, 1.0f, 1.0f}, 
+		{1.0f, 0.0f, 1.0f, 0.0f, 0.0f, -1.0f}, 
+		{0.0f, 1.0f, 1.0f, 0.0f, 0.0f, -1.0f} 
 	};
 	train(iteration_count, alpha);
 
@@ -133,9 +127,9 @@ void setDataset1() {
 
 void setDataset2() {
 	points = {
-		{1.0f, 1.0f, 0.0f, 0.0f, 1.0f, 1.0f}, // Bleu (1)
-		{2.0f, 3.0f, 1.0f, 0.0f, 0.0f, -1.0f}, // Rouge (-1)
-		{3.0f, 3.0f, 1.0f, 0.0f, 0.0f, -1.0f}  // Rouge (-1)
+		{1.0f, 1.0f, 0.0f, 0.0f, 1.0f, 1.0f}, 
+		{2.0f, 3.0f, 1.0f, 0.0f, 0.0f, -1.0f}, 
+		{3.0f, 3.0f, 1.0f, 0.0f, 0.0f, -1.0f}  
 	};
 	train(iteration_count, alpha);
 }
@@ -158,42 +152,33 @@ void setDataset3() {
 
 void setDataset4() {
 	points = {
-		{1.0f, 0.0f, 0.0f, 0.0f, 1.0f, 1.0f},   // (1,0) bleu 
-		{0.0f, 1.0f, 0.0f, 0.0f, 1.0f, 1.0f},   // (0,1) bleu
-		{0.0f, 0.0f, 1.0f, 0.0f, 0.0f, -1.0f},  // (0,0) rouge
-		{1.0f, 1.0f, 1.0f, 0.0f, 0.0f, -1.0f}   // (1,1) rouge
+		{1.0f, 0.0f, 0.0f, 0.0f, 1.0f, 1.0f},   
+		{0.0f, 1.0f, 0.0f, 0.0f, 1.0f, 1.0f},   
+		{0.0f, 0.0f, 1.0f, 0.0f, 0.0f, -1.0f}, 
+		{1.0f, 1.0f, 1.0f, 0.0f, 0.0f, -1.0f}   
 	};
 	train(iteration_count, alpha);
 }
 
 void setDataset5() {
 	points.clear();
-	srand(time(0)); // Initialiser la graine aléatoire
+	srand(time(0)); 
 
 	for (int i = 0; i < 500; ++i) {
-		float x = static_cast<float>(rand()) / RAND_MAX * 4.0f; // x dans [0, 4]
-		float y = static_cast<float>(rand()) / RAND_MAX * 4.0f; // y dans [0, 4]
-		float label = (abs(x - 2.0f) <= 0.6f || abs(y - 2.0f) <= 0.6f) ? 1.0f : -1.0f; // Label basé sur la condition
+		float x = static_cast<float>(rand()) / RAND_MAX * 4.0f;
+		float y = static_cast<float>(rand()) / RAND_MAX * 4.0f; 
+		float label = (abs(x - 2.0f) <= 0.6f || abs(y - 2.0f) <= 0.6f) ? 1.0f : -1.0f;
 
-		// Assigner une couleur en fonction du label
-		float r = (label == 1.0f) ? 0.0f : 1.0f; // Bleu pour 1, Rouge pour -1
+		float r = (label == 1.0f) ? 0.0f : 1.0f; 
 		float g = 0.0f;
 		float b = (label == 1.0f) ? 1.0f : 0.0f;
 
 		points.push_back({ x, y, r, g, b, label });
 	}
 
-	train(iteration_count, alpha); // Entraîner le modèle
+	train(iteration_count, alpha); 
 }
 
-void init()
-{
-	glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
-	glMatrixMode(GL_PROJECTION);
-	glLoadIdentity();
-	gluOrtho2D(-0.2, 4.0, -0.2, 4.0);
-	initializeWeights(); // Initialize W here
-}
 
 void keyboard(unsigned char key, int x, int y) {
 	switch (key) {
@@ -212,16 +197,24 @@ void keyboard(unsigned char key, int x, int y) {
 	case '5':
 		setDataset5();
 		break;
-	case 'q':  // Quitter avec 'q'
+	case 'q':  
 		exit(0);
 		break;
 	default:
-		std::cout << "Choix invalide, utilisez 1, 2, 3 ou q pour quitter.\n";
+		std::cout << "Choix invalide\n";
 	}
-	glutPostRedisplay(); // Redessiner après le changement
+	glutPostRedisplay();
 }
 
-int main(int argc, char** argv) {
+void init() {
+	glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
+	glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
+	gluOrtho2D(-0.2, 4.0, -0.2, 4.0);
+	initializeWeights(); 
+}
+
+/*int main(int argc, char** argv) {
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);
 	glutInitWindowSize(500, 500);
@@ -234,4 +227,18 @@ int main(int argc, char** argv) {
 
 	glutMainLoop(); // Boucle principale OpenGL (ne retourne jamais)
 	return 0;
+}*/
+
+void launchAlgoLin(int argc, char** argv) {
+	glutInit(&argc, argv);
+	glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);
+	glutInitWindowSize(500, 500);
+	glutCreateWindow("Perceptron Linear");
+
+	init();
+
+	glutDisplayFunc(display);
+	glutKeyboardFunc(keyboard);
+
+	glutMainLoop(); 
 }

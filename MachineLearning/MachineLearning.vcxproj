@@ -129,6 +129,11 @@
   <ItemGroup>
     <ClCompile Include="AlgoLin.cpp" />
     <ClCompile Include="MachineLearning.cpp" />
+    <ClCompile Include="Mlp.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="AlgoLin.h" />
+    <ClInclude Include="Mlp.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

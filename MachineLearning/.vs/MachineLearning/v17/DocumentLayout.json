@@ -3,12 +3,24 @@
   "WorkspaceRootPath": "C:\\Users\\virlo\\OneDrive\\Bureau\\Esgi\\game_recognition\\MachineLearning\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{AC45069D-36CA-4E92-91F0-62505786183E}|MachineLearning.vcxproj|C:\\Users\\virlo\\OneDrive\\Bureau\\Esgi\\game_recognition\\MachineLearning\\AlgoLin.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{AC45069D-36CA-4E92-91F0-62505786183E}|MachineLearning.vcxproj|solutionrelative:AlgoLin.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{AC45069D-36CA-4E92-91F0-62505786183E}|MachineLearning.vcxproj|C:\\Users\\virlo\\OneDrive\\Bureau\\Esgi\\game_recognition\\MachineLearning\\Mlp.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{AC45069D-36CA-4E92-91F0-62505786183E}|MachineLearning.vcxproj|solutionrelative:Mlp.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC45069D-36CA-4E92-91F0-62505786183E}|MachineLearning.vcxproj|C:\\Users\\virlo\\OneDrive\\Bureau\\Esgi\\game_recognition\\MachineLearning\\Mlp.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{AC45069D-36CA-4E92-91F0-62505786183E}|MachineLearning.vcxproj|solutionrelative:Mlp.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{AC45069D-36CA-4E92-91F0-62505786183E}|MachineLearning.vcxproj|C:\\Users\\virlo\\OneDrive\\Bureau\\Esgi\\game_recognition\\MachineLearning\\MachineLearning.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{AC45069D-36CA-4E92-91F0-62505786183E}|MachineLearning.vcxproj|solutionrelative:MachineLearning.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC45069D-36CA-4E92-91F0-62505786183E}|MachineLearning.vcxproj|C:\\Users\\virlo\\OneDrive\\Bureau\\Esgi\\game_recognition\\MachineLearning\\AlgoLin.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{AC45069D-36CA-4E92-91F0-62505786183E}|MachineLearning.vcxproj|solutionrelative:AlgoLin.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC45069D-36CA-4E92-91F0-62505786183E}|MachineLearning.vcxproj|C:\\Users\\virlo\\OneDrive\\Bureau\\Esgi\\game_recognition\\MachineLearning\\AlgoLin.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{AC45069D-36CA-4E92-91F0-62505786183E}|MachineLearning.vcxproj|solutionrelative:AlgoLin.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
   "DocumentGroupContainers": [
@@ -23,27 +35,68 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "Mlp.cpp",
+              "DocumentMoniker": "C:\\Users\\virlo\\OneDrive\\Bureau\\Esgi\\game_recognition\\MachineLearning\\Mlp.cpp",
+              "RelativeDocumentMoniker": "Mlp.cpp",
+              "ToolTip": "C:\\Users\\virlo\\OneDrive\\Bureau\\Esgi\\game_recognition\\MachineLearning\\Mlp.cpp",
+              "RelativeToolTip": "Mlp.cpp",
+              "ViewState": "AgIAALQAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-02-02T19:44:29.551Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "AlgoLin.h",
+              "DocumentMoniker": "C:\\Users\\virlo\\OneDrive\\Bureau\\Esgi\\game_recognition\\MachineLearning\\AlgoLin.h",
+              "RelativeDocumentMoniker": "AlgoLin.h",
+              "ToolTip": "C:\\Users\\virlo\\OneDrive\\Bureau\\Esgi\\game_recognition\\MachineLearning\\AlgoLin.h",
+              "RelativeToolTip": "AlgoLin.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-02-02T20:02:30.115Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Mlp.h",
+              "DocumentMoniker": "C:\\Users\\virlo\\OneDrive\\Bureau\\Esgi\\game_recognition\\MachineLearning\\Mlp.h",
+              "RelativeDocumentMoniker": "Mlp.h",
+              "ToolTip": "C:\\Users\\virlo\\OneDrive\\Bureau\\Esgi\\game_recognition\\MachineLearning\\Mlp.h",
+              "RelativeToolTip": "Mlp.h",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAABoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-02-02T19:57:29.003Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "AlgoLin.cpp",
               "DocumentMoniker": "C:\\Users\\virlo\\OneDrive\\Bureau\\Esgi\\game_recognition\\MachineLearning\\AlgoLin.cpp",
               "RelativeDocumentMoniker": "AlgoLin.cpp",
               "ToolTip": "C:\\Users\\virlo\\OneDrive\\Bureau\\Esgi\\game_recognition\\MachineLearning\\AlgoLin.cpp",
               "RelativeToolTip": "AlgoLin.cpp",
-              "ViewState": "AgIAALAAAAAAAAAAAAAAALkAAAA2AAAAAAAAAA==",
+              "ViewState": "AgIAAAcAAAAAAAAAAAAAAEkAAAAxAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-02-02T13:19:03.218Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "MachineLearning.cpp",
               "DocumentMoniker": "C:\\Users\\virlo\\OneDrive\\Bureau\\Esgi\\game_recognition\\MachineLearning\\MachineLearning.cpp",
               "RelativeDocumentMoniker": "MachineLearning.cpp",
               "ToolTip": "C:\\Users\\virlo\\OneDrive\\Bureau\\Esgi\\game_recognition\\MachineLearning\\MachineLearning.cpp",
               "RelativeToolTip": "MachineLearning.cpp",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAACAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-02-02T13:14:55.747Z"
+              "WhenOpened": "2025-02-02T13:14:55.747Z",
+              "EditorCaption": ""
             }
           ]
         }
