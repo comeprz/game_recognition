@@ -8,17 +8,14 @@ struct Point
 {
 	float x, y;
 	float r, g, b;
+	float label;
 };
 
-std::vector<Point> points = {
-	{1.0f, 1.0f, 0.0f, 0.0f, 1.0f}, //point bleu
-	{1.0f,0.0f, 1.0f, 0.0f,0.0f}, //point rouge
-	{0.0f, 1.0f, 1.0f,0.0f, 0.0f} //point rouge
-};
+std::vector<Point> points;
 
 std::vector<float> W;
 float alpha = 0.1f;
-int iteration_count = 100;
+int iteration_count = 200;
 
 void initializeWeights() {
 	srand(time(0));
@@ -29,6 +26,7 @@ void initializeWeights() {
 	//W = { 0.5f, 1.0f, -1.0f };
 	std::cout << "Initial Weights: " << W[0] << " " << W[1] << " " << W[2] << std::endl;
 }
+
 
 float predict(const std::vector<float>& W, float x1, float x2) {
 	float signal = W[1] * x1 + W[2] * x2 + W[0];
@@ -59,7 +57,7 @@ void drawAxes()
 
 void displaySeparation() {
 	int nx = 100, ny = 100;
-	float step = 1.0f / nx;
+	float step = 4.0f / nx;
 
 	//std::cout << "Weights: " << W[0] << " " << W[1] << " " << W[2] << std::endl;
 
@@ -92,7 +90,7 @@ void train(int iteration_count, float alpha) {
 	for (int i = 0; i < iteration_count; ++i) {
 		int k = rand() % points.size();
 		Point Xk = points[k];
-		float Yk = (Xk.r == 0.0f) ? 1.0f : -1.0f; // Bleu = 1, Rouge = -1
+		float Yk = Xk.label;// Bleu = 1, Rouge = -1
 		float gXk = predict(W, Xk.x, Xk.y);
 
 		W[0] += alpha * (Yk - gXk) * 1.0f;
@@ -122,27 +120,95 @@ void display()
 
 }
 
+void setDataset1() {
+	points = {
+		{1.0f, 1.0f, 0.0f, 0.0f, 1.0f, 1.0f}, // Bleu (1)
+		{1.0f, 0.0f, 1.0f, 0.0f, 0.0f, -1.0f}, // Rouge (-1)
+		{0.0f, 1.0f, 1.0f, 0.0f, 0.0f, -1.0f}  // Rouge (-1)
+	};
+	train(iteration_count, alpha);
+
+
+}
+
+void setDataset2() {
+	points = {
+		{1.0f, 1.0f, 0.0f, 0.0f, 1.0f, 1.0f}, // Bleu (1)
+		{2.0f, 3.0f, 1.0f, 0.0f, 0.0f, -1.0f}, // Rouge (-1)
+		{3.0f, 3.0f, 1.0f, 0.0f, 0.0f, -1.0f}  // Rouge (-1)
+	};
+	train(iteration_count, alpha);
+}
+
+void setDataset3() {
+	points.clear();
+	for (int i = 0; i < 50; ++i) {
+		float x = static_cast<float>(rand()) / RAND_MAX * 0.9f + 1.0f;
+		float y = static_cast<float>(rand()) / RAND_MAX * 0.9f + 1.0f;
+		points.push_back({ x, y, 0.0f, 0.0f, 1.0f, 1.0f });
+	}
+	for (int i = 0; i < 50; ++i) {
+		float x = static_cast<float>(rand()) / RAND_MAX * 0.9f + 2.0f;
+		float y = static_cast<float>(rand()) / RAND_MAX * 0.9f + 2.0f;
+		points.push_back({ x, y, 1.0f, 0.0f, 0.0f, -1.0f });
+	}
+	train(iteration_count, alpha);
+
+}
+
+void setDataset4() {
+	points = {
+		{1.0f, 0.0f, 0.0f, 0.0f, 1.0f, 1.0f},   // (1,0) bleu 
+		{0.0f, 1.0f, 0.0f, 0.0f, 1.0f, 1.0f},   // (0,1) bleu
+		{0.0f, 0.0f, 1.0f, 0.0f, 0.0f, -1.0f},  // (0,0) rouge
+		{1.0f, 1.0f, 1.0f, 0.0f, 0.0f, -1.0f}   // (1,1) rouge
+	};
+	train(iteration_count, alpha);
+}
 
 void init()
 {
 	glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
-	gluOrtho2D(-0.2, 1.2, -0.2, 1.2);
-	initializeWeights();
-	train(iteration_count, alpha);
+	gluOrtho2D(-0.2, 4.0, -0.2, 4.0);
+	initializeWeights(); // Initialize W here
 }
 
+void keyboard(unsigned char key, int x, int y) {
+	switch (key) {
+	case '1':
+		setDataset1();
+		break;
+	case '2':
+		setDataset2();
+		break;
+	case '3':
+		setDataset3();
+		break;
+	case '4':
+		setDataset4();
+		break;
+	case 'q':  // Quitter avec 'q'
+		exit(0);
+		break;
+	default:
+		std::cout << "Choix invalide, utilisez 1, 2, 3 ou q pour quitter.\n";
+	}
+	glutPostRedisplay(); // Redessiner après le changement
+}
 
-int main(int argc, char** argv)
-{
+int main(int argc, char** argv) {
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);
 	glutInitWindowSize(500, 500);
-	glutCreateWindow("OpenGl Scatter Plot");
-	init();
-	glutDisplayFunc(display);
-	glutMainLoop();
-	return 0;
+	glutCreateWindow("OpenGL Scatter Plot");
 
+	init();
+
+	glutDisplayFunc(display);
+	glutKeyboardFunc(keyboard); // Gestion du choix avec le clavier
+
+	glutMainLoop(); // Boucle principale OpenGL (ne retourne jamais)
+	return 0;
 }
