@@ -166,6 +166,26 @@ void setDataset4() {
 	train(iteration_count, alpha);
 }
 
+void setDataset5() {
+	points.clear();
+	srand(time(0)); // Initialiser la graine aléatoire
+
+	for (int i = 0; i < 500; ++i) {
+		float x = static_cast<float>(rand()) / RAND_MAX * 4.0f; // x dans [0, 4]
+		float y = static_cast<float>(rand()) / RAND_MAX * 4.0f; // y dans [0, 4]
+		float label = (abs(x - 2.0f) <= 0.6f || abs(y - 2.0f) <= 0.6f) ? 1.0f : -1.0f; // Label basé sur la condition
+
+		// Assigner une couleur en fonction du label
+		float r = (label == 1.0f) ? 0.0f : 1.0f; // Bleu pour 1, Rouge pour -1
+		float g = 0.0f;
+		float b = (label == 1.0f) ? 1.0f : 0.0f;
+
+		points.push_back({ x, y, r, g, b, label });
+	}
+
+	train(iteration_count, alpha); // Entraîner le modèle
+}
+
 void init()
 {
 	glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
@@ -188,6 +208,9 @@ void keyboard(unsigned char key, int x, int y) {
 		break;
 	case '4':
 		setDataset4();
+		break;
+	case '5':
+		setDataset5();
 		break;
 	case 'q':  // Quitter avec 'q'
 		exit(0);
