@@ -4,15 +4,15 @@ import os
 
 # Vidéos
 video_files = {
-    'fortnite': 'videos/fortnite1.mp4',  
-    'lol': 'videos/lol1.mp4',    
-    'cod': 'videos/cod1.mp4'
+    'fortnite': 'C:/Travail/M1/Machine Learning/game_recognition/scrapper/videos/fortnite1.mp4',  
+    'lol': 'C:/Travail/M1/Machine Learning/game_recognition/scrapper/videos/lol1.mp4',    
+    'cod': 'C:/Travail/M1/Machine Learning/game_recognition/scrapper/videos/cod1.mp4'
 }
 
 output_folder = 'screenshots'
 
 # Nombre de screens
-num_screenshots = 100
+num_screenshots = 1000
 
 if not os.path.exists(output_folder):
     os.makedirs(output_folder)
