@@ -39,6 +39,7 @@ for game, video_path in video_files.items():
 
         ret, frame = cap.read()
         if ret:
+            frame = cv2.resize(frame, (227, 128))
             cv2.imwrite(f'{game_folder}/frame_{i+1}.jpg', frame)
             print(f'Screenshot {i+1} pour {game} sauvegardé.')
 
