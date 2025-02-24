@@ -1,48 +1,50 @@
 import cv2
 import random
 import os
+import glob
 
-# Vidéos
-video_files = {
-    'fortnite': 'C:/Travail/M1/Machine Learning/game_recognition/scrapper/videos/fortnite1.mp4',  
-    'lol': 'C:/Travail/M1/Machine Learning/game_recognition/scrapper/videos/lol1.mp4',    
-    'cod': 'C:/Travail/M1/Machine Learning/game_recognition/scrapper/videos/cod1.mp4'
-}
-
-output_folder = 'screenshots'
-
-# Nombre de screens
+video_folder = "D:\\Travail\\M1\\test_machine_learning\\videos"
+output_folder = "D:\\Travail\\M1\\test_machine_learning\\screenshots"
 num_screenshots = 1000
 
 if not os.path.exists(output_folder):
     os.makedirs(output_folder)
 
-# Parcourir chaque vidéo
-for game, video_path in video_files.items():
-    game_folder = os.path.join(output_folder, game)
-    if not os.path.exists(game_folder):
-        os.makedirs(game_folder)
+# Lister tous les jeux (chaque dossier dans 'video_folder' est un jeu)
+games = [d for d in os.listdir(video_folder) if os.path.isdir(os.path.join(video_folder, d))]
 
-    cap = cv2.VideoCapture(video_path)
-    if not cap.isOpened():
-        print(f"Erreur : Impossible d'ouvrir la vidéo {video_path}")
+for game in games:
+    game_video_paths = glob.glob(os.path.join(video_folder, game, "*.mp4"))  # Toutes les vidéos du jeu
+    if not game_video_paths:
+        print(f"Aucune vidéo trouvée pour {game}, passage au suivant...")
         continue
 
-    total_frames = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
-    fps = int(cap.get(cv2.CAP_PROP_FPS))
+    game_folder = os.path.join(output_folder, game)
+    os.makedirs(game_folder, exist_ok=True)
 
-    print(f"Traitement de la vidéo {game} ({total_frames} frames)...")
+    # Répartir les screenshots sur toutes les vidéos du jeu
+    total_videos = len(game_video_paths)
+    screenshots_per_video = num_screenshots // total_videos  # Screenshots à prendre par vidéo
 
-    for i in range(num_screenshots):
-        frame_id = random.randint(0, total_frames - 1)
-        cap.set(cv2.CAP_PROP_POS_FRAMES, frame_id)
+    for video_path in game_video_paths:
+        cap = cv2.VideoCapture(video_path)
+        if not cap.isOpened():
+            print(f"Erreur : Impossible d'ouvrir la vidéo {video_path}")
+            continue
 
-        ret, frame = cap.read()
-        if ret:
-            frame = cv2.resize(frame, (227, 128))
-            cv2.imwrite(f'{game_folder}/frame_{i+1}.jpg', frame)
-            print(f'Screenshot {i+1} pour {game} sauvegardé.')
+        total_frames = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
 
-    cap.release()
+        print(f"Traitement de {video_path} ({total_frames} frames)...")
 
-print("Extraction terminée")
+        for i in range(screenshots_per_video):
+            frame_id = random.randint(0, total_frames - 1)
+            cap.set(cv2.CAP_PROP_POS_FRAMES, frame_id)
+
+            ret, frame = cap.read()
+            if ret:
+                frame = cv2.resize(frame, (227, 128))
+                cv2.imwrite(f"{game_folder}/frame_{i+1}_{os.path.basename(video_path)}.jpg", frame)
+
+        cap.release()
+
+print("Extraction terminée.")
