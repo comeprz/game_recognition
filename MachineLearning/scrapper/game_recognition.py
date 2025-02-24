@@ -3,8 +3,8 @@ import random
 import os
 import glob
 
-video_folder = "D:\\Travail\\M1\\test_machine_learning\\videos"
-output_folder = "D:\\Travail\\M1\\test_machine_learning\\screenshots"
+video_folder = "videos"
+output_folder = "screenshots"
 num_screenshots = 1000
 
 if not os.path.exists(output_folder):

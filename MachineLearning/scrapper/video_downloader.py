@@ -8,7 +8,7 @@ game_queries = {
     'cod': 'call of duty gameplay no commentary'
 }
 
-output_folder = "D:\\Travail\\M1\\test_machine_learning\\videos"
+output_folder = "videos"
 
 # Fonction pour créer le dossier de sortie du jeu
 def ensure_folder(game):
