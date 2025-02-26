@@ -25,6 +25,7 @@ void setDataset5();
 void display();
 void keyboard(unsigned char key, int x, int y);
 void init();
+void setAlgoLinPoints(const std::vector<Point>& newPoints);
 void launchAlgoLin(int argc, char** argv);
 
 #endif

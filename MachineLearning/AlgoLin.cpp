@@ -1,5 +1,6 @@
 #include "AlgoLin.h"
-#include <GL/glut.h>
+//#include <GL/glut.h>
+#include <GL/freeglut.h> 
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
@@ -9,7 +10,13 @@ std::vector<float> W;
 float alpha = 0.1f;
 int iteration_count = 200;
 
+std::vector<std::vector<double>> inputs;  // dimension N x d
 std::vector<Point> points;
+
+void setAlgoLinPoints(const std::vector<Point>& newPoints)
+{
+    points = newPoints;
+}
 
 void initializeWeights() {
 	srand(time(0));
